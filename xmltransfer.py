@@ -9,8 +9,12 @@ from lxml.etree import Element, SubElement, tostring, ElementTree
 import os
 
 def transfer(image_dir,xml_ori,txt_dir,xml_save,name):
+    '''
+    transfer txt annotation file to xml file
+    format in txt file: calss xmin ymin xmax ymax
+    '''
     with open(txt_dir) as f:
-        trainfiles = f.readlines()  # 标注数据 格式(filename label x_min y_min x_max y_max)
+        trainfiles = f.readlines() 
     
 #    num = len(trainfiles)
     tree = ElementTree()
@@ -68,6 +72,14 @@ def transfer(image_dir,xml_ori,txt_dir,xml_save,name):
         tree.write(xml_save + xml_file, encoding='utf-8')
 
 def total_trans(load_path,save_path,image_path,xml_ori):
+    '''
+    transfer txt file to xml file in a folder
+    only for ONE class
+    load_path:folder of txt filds
+    save_path:folder of generated xml files
+    image_path:folder for annotated images
+    xml_ori: a frame for xml files
+    '''
     i = 0
     for root,dirs,files in os.walk(load_path):
         for name in files:
