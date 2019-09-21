@@ -25,7 +25,13 @@ def seg(load_path,save_path):
             cropped.save(save_path + name)
             i += 1
     print('finish %d images segmentation' % (i))
+  
 def resize(load_path,save_path,size = 128, ex_boundary = True):
+    '''
+    for self record sun/rain traffic images segmentation and resizing
+    load_path: folder saved RGB imges from recorded video
+    save_path: folder for save new ROI images, default image size is 128*128
+    '''
     i = 0
     for root,dirs,files in os.walk(load_path):
         for name in files:
@@ -66,6 +72,10 @@ def resize(load_path,save_path,size = 128, ex_boundary = True):
     print('finish %d images resizing' % (i))
 
 def resize_only(load_path, save_path,size=128):
+    
+    '''
+    do only resize work for already cropped images
+    '''
     i = 0
     for root,dirs,files in os.walk(load_path):
         for name in files:
